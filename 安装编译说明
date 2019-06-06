@@ -1,0 +1,24 @@
+1、依赖的第三方包如下：
+apache-log4cxx-0.10.0.tar.gz
+apr-1.7.0.tar.gz
+apr-util-1.6.1.tar.gz
+上面三个是安装编译日志库用的
+boost_1_59_0.tar.gz
+libevent-2.0.21-stable.tar.gz
+
+2、集成开发工具：
+eclipse-cpp-2019-03-R-linux-gtk-x86_64.tar.gz
+
+3、编译注意事项：
+注意第三方包编译安装后，头文件所在的位置与生成的库文件所在的文件夹路径别写错
+
+第三方头文件与依赖库设置：
+c/c++ general-->paths and symbols--->
+头文件路径在：includes中设置
+第三方库路径设置在：library patsh中设置
+第三方库名称设置在：libraries中设置，，这里linux下设置库的名字与windows下不一样，比如日志库所在位置：/usr/local/log4cxx/lib
+名字叫：liblog4cxx.so，，但在libraries中设置的时候，要写为：log4cxx,,这个与windows下差别很大，如果写成liblog4cxx.so，，则编译后链接就会报错，提示找不到liblog4cxx.so
+这里算是一个坑，对于不熟悉linux下开发的小白来说，折腾了大半天才找到原因。
+
+链接的时候，在eclipse开发环境中设置：
+Gcc C++ linker-->miscellaneous--->linker flags = -lpthread
